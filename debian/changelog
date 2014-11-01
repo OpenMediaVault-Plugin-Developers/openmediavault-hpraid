@@ -1,4 +1,10 @@
-openmediavault-hpraid (1.0) UNRELEASED; urgency=low
+openmediavault-hpraid (1.0.2) stable; urgency=low
+
+  * Lower OMV version requirement
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 01 Nov 2014 14:55:07 -0500
+
+openmediavault-hpraid (1.0) stable; urgency=low
 
   * Initial release
 
