@@ -1,0 +1,13 @@
+Source: openmediavault-hpraid
+Section: net
+Priority: optional
+Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
+Build-Depends: debhelper (>= 9.0.0)
+Standards-Version: 3.9.3
+Homepage: http://omv-extras.org/simple/
+
+Package: openmediavault-hpraid
+Architecture: all
+Depends: openmediavault (>= 1.0.30), hpacucli
+Description: HPRaid plugin for OpenMediaVault.
+ Plugin to view information about HP hardware raid.
