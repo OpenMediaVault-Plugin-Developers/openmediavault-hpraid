@@ -3,7 +3,7 @@
  * @author    Volker Theile <volker.theile@openmediavault.org>
  * @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
  * @copyright Copyright (c) 2009-2013 Volker Theile
- * @copyright Copyright (c) 2014 OpenMediaVault Plugin Developers
+ * @copyright Copyright (c) 2014-2016 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,24 +18,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-require_once "openmediavault/object.inc";
-require_once "openmediavault/config.inc";
-require_once "openmediavault/error.inc";
-require_once "openmediavault/util.inc";
-require_once "openmediavault/rpcservice.inc";
-require_once "openmediavault/notify.inc";
-require_once("openmediavault/system.inc");
-
-class OMVRpcServiceHpraid extends OMVRpcServiceAbstract
+class OMVRpcServiceHpraid extends \OMV\Rpc\ServiceAbstract
 {
     public function getName()
     {
         return 'Hpraid';
-    }
-
-    private function getPluginName()
-    {
-        return strtolower( $this->getName() );
     }
 
     public function initialize()
@@ -45,16 +32,12 @@ class OMVRpcServiceHpraid extends OMVRpcServiceAbstract
 
     public function getOutput($params, $context)
     {
-        $output = "";
-        $result = "";
-
-        OMVUtil::exec("omv-sysinfo 31-hpraid", $result);
-        $output = implode("\n", $result) . "\n";
-
-        return $output;
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ["role" => OMV_ROLE_ADMINISTRATOR]);
+        // Get task overview.
+        $cmd = new \OMV\System\Process("omv-sysinfo", "31-hpraid");
+        $cmd->setRedirect2to1();
+        $cmd->execute($output);
+        return implode("\n", $output);
     }
 }
-
-// Register the RPC service.
-$rpcServiceMgr = &OMVRpcServiceMgr::getInstance();
-$rpcServiceMgr->registerService(new OMVRpcServiceHpraid());
