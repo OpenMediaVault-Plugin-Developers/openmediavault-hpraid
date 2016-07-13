@@ -1,3 +1,9 @@
+openmediavault-hpraid (3.1) stable; urgency=low
+
+  * Add missing file
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 13 Jul 2016 03:48:57 -0500
+
 openmediavault-hpraid (3.0) stable; urgency=low
 
   * Port to OMV 3.x
