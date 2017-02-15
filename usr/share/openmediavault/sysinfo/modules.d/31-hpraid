@@ -21,7 +21,7 @@ set -e
 
 . /usr/share/openmediavault/sysinfo/functions
 
-HWRAID_BIN="/usr/sbin/hpacucli"
+HWRAID_BIN="/usr/sbin/hpssacli"
 
 if [ ! -f "${HWRAID_BIN}" ]; then
     exit 0
